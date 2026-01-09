@@ -1,0 +1,16 @@
+
+.tna-image-viewer-start {
+  padding: 1rem;
+}
+
+.tna-image-viewer-start__image {
+  margin: 0 auto;
+  max-width: max-content;
+}
+
+.tna-image-viewer-start__buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}

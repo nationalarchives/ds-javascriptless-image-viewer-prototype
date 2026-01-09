@@ -1,5 +1,5 @@
 {
-  "serviceName": "Service name goes here",
+  "serviceName": "Javascriptless image viewer prototype",
   "plugins": {
     "govuk-frontend": {
       "rebrand": true

@@ -1,0 +1,9 @@
+{% extends 'nationalarchives/templates/layouts/_prototype-kit.njk' %}
+
+{% set theme = 'light' %}
+{% set themeAccent = 'blue' %}
+
+{% block stylesheets %}
+  {{ super() }}
+  <link rel="stylesheet" href="/public/stylesheets/prototype.css">
+{% endblock %}

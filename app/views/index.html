@@ -1,20 +1,55 @@
-{% extends "layouts/main.html" %}
+{% extends 'layouts/base.html' %}
 
-{% set pageName="Home" %}
+{% from 'nationalarchives/components/breadcrumbs/macro.njk' import tnaBreadcrumbs %}
+
+{% set pageTitle = 'Record page image viewer prototype' %}
+{% set theme = 'light' %}
+{% set themeAccent = 'blue' %}
+
+{% block beforeContent %}
+<div class="tna-container">
+  {{ tnaBreadcrumbs({
+    items: [
+      {
+        text: 'Home',
+        href: '/'
+      }
+    ],
+    classes: 'tna-column tna-column--full tna-!--padding-vertical-s'
+  }) }}
+</div>
+{% endblock %}
 
 {% block content %}
+<div class="tna-section">
+  <div class="tna-container">
+    <div class="tna-column tna-column--full">
+      <h1 class="tna-heading-xl">
+        {{ pageTitle }}
+      </h1>
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+      {# This is using the block-contrast styles but the design has this set to a lighter background colour of #323334 #}
+      <div class="tna-block-contrast tna-image-viewer-start tna-!--margin-top-m">
+        <h3>Preview this record</h3>
 
-    {% include "govuk-prototype-kit/includes/homepage-top.njk" %}
+        <p class="tna-!--margin-top-xs">1849 images</p>
 
-    <h1 class="govuk-heading-xl">
-      {{ serviceName }}
-    </h1>
+        <figure class="tna-image-viewer-start__image">
+          <img src="https://placehold.co/600x400" alt="">
 
-    {% include "govuk-prototype-kit/includes/homepage-bottom.njk" %}
+          <figcaption>Catalogue Reference:adm/177/5</figcaption>
+        </figure>
+
+        <div class="tna-image-viewer-start__buttons tna-!--margin-top-m">
+          <a href="#" class="tna-button">Open in our accessible viewer</a>
+
+          <a href="#" class="tna-button">Open in Universal Viewer (requires JavaScript)</a>
+        </div>
+
+      </div>
+
+
+    </div>
   </div>
 </div>
-
 {% endblock %}
