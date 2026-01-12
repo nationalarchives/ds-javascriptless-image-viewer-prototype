@@ -1,0 +1,153 @@
+{% extends 'layouts/image-viewer-base.html' %}
+
+{% block mainContent %}
+  <div class="tna-theme-dark tna-image-viewer-layout__content">
+    <div class="tna-section">
+      <div class="tna-container tna-container--max">
+        <div class="tna-column tna-column--full">
+
+          {{ tnaIndexGrid({
+            classes: "tna-index-grid--max tna-image-viewer__grid tna-!--padding-vertical-s",
+            items: [
+              {
+                href: "image-viewer-image",
+                label: "Image 1 of 1849",
+                src: "https://picsum.photos/id/244/600/400",
+                alt: "",
+                width: 600,
+                height: 400
+              },
+              {
+                href: "image-viewer-image",
+                label: "Image 2 of 1849",
+                src: "https://picsum.photos/id/433/600/400",
+                alt: "",
+                width: 600,
+                height: 400
+              },
+              {
+                href: "image-viewer-image",
+                label: "Image 3 of 1849",
+                src: "https://picsum.photos/id/593/600/400",
+                alt: "",
+                width: 600,
+                height: 400
+              },
+              {
+                href: "image-viewer-image",
+                label: "Image 4 of 1849",
+                src: "https://picsum.photos/id/244/600/400",
+                alt: "",
+                width: 600,
+                height: 400
+              },
+              {
+                href: "image-viewer-image",
+                label: "Image 5 of 1849",
+                src: "https://picsum.photos/id/433/600/400",
+                alt: "",
+                width: 600,
+                height: 400
+              },
+              {
+                href: "image-viewer-image",
+                label: "Image 6 of 1849",
+                src: "https://picsum.photos/id/593/600/400",
+                alt: "",
+                width: 600,
+                height: 400
+              },
+              {
+                href: "image-viewer-image",
+                label: "Image 7 of 1849",
+                src: "https://picsum.photos/id/244/600/400",
+                alt: "",
+                width: 600,
+                height: 400
+              },
+              {
+                href: "image-viewer-image",
+                label: "Image 8 of 1849",
+                src: "https://picsum.photos/id/433/600/400",
+                alt: "",
+                width: 600,
+                height: 400
+              },
+              {
+                href: "image-viewer-image",
+                label: "Image 9 of 1849",
+                src: "https://picsum.photos/id/593/600/400",
+                alt: "",
+                width: 600,
+                height: 400
+              },
+              {
+                href: "image-viewer-image",
+                label: "Image 10 of 1849",
+                src: "https://picsum.photos/id/244/600/400",
+                alt: "",
+                width: 600,
+                height: 400
+              },
+              {
+                href: "image-viewer-image",
+                label: "Image 11 of 1849",
+                src: "https://picsum.photos/id/433/600/400",
+                alt: "",
+                width: 600,
+                height: 400
+              },
+              {
+                href: "image-viewer-image",
+                label: "Image 12 of 1849",
+                src: "https://picsum.photos/id/593/600/400",
+                alt: "",
+                width: 600,
+                height: 400
+              }
+            ],
+            columns: 4,
+            columnsMedium: 3,
+            columnsSmall: 2,
+            columnsTiny: 1
+          }) }}
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block footerContent %}
+  {{ tnaPagination({
+    solid: true,
+    previous: {
+      href: "#"
+    },
+    items: [
+      {
+        number: 1,
+        href: "#"
+      },
+      {
+        number: 2,
+        href: "#"
+      },
+      {
+        number: 3,
+        href: "#"
+      },
+      {
+        ellipsis: true
+      },
+      {
+        number: 154,
+        href: "#"
+      }
+    ],
+    next: {
+      href: "#"
+    }
+  })}}
+{% endblock %}

@@ -1,6 +1,7 @@
 {% extends 'layouts/base.html' %}
 
 {% from 'nationalarchives/components/breadcrumbs/macro.njk' import tnaBreadcrumbs %}
+{% from "nationalarchives/components/button/macro.njk" import tnaButton %}
 
 {% set pageTitle = 'Record page image viewer prototype' %}
 {% set theme = 'light' %}
@@ -28,7 +29,6 @@
         {{ pageTitle }}
       </h1>
 
-      {# This is using the block-contrast styles but the design has this set to a lighter background colour of #323334 #}
       <div class="tna-block-contrast tna-image-viewer-start tna-!--margin-top-m">
         <h3>Preview this record</h3>
 
@@ -41,9 +41,15 @@
         </figure>
 
         <div class="tna-image-viewer-start__buttons tna-!--margin-top-m">
-          <a href="#" class="tna-button">Open in our accessible viewer</a>
+          {{ tnaButton({
+            text: "Open in our accessible viewer",
+            href: "/image-viewer-list"
+          }) }}
 
-          <a href="#" class="tna-button">Open in Universal Viewer (requires JavaScript)</a>
+          {{ tnaButton({
+            text: "Open in Universal Viewer (requires JavaScript)",
+            href: "#"
+          }) }}
         </div>
 
       </div>

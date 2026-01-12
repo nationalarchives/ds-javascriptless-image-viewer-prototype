@@ -1,0 +1,55 @@
+{% extends 'layouts/image-viewer-base.html' %}
+
+{# Default navigation for square image (base template) #}
+{% set previousPage = previousPage | default('/image-viewer-image-portrait') %}
+{% set nextPage = nextPage | default('/image-viewer-image-landscape') %}
+
+{% block afterHeader %}
+  {{ tnaWarning({
+    classes: "tna-!--no-margin-top",
+    headingLevel: 2,
+    body: "<p><strong>You are viewing a low-resolution preview of this record</strong></p> <p class='tna-!--no-margin-top'>To download the full record click &lsquo;Add to basket&rsquo;.</p>"
+  }) }}
+{% endblock %}
+
+{% block mainContent %}
+
+  <div class="tna-theme-dark tna-image-viewer-layout__content" style="position: relative;">
+    <div class="tna-section">
+
+      <div style="position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%); display: flex; justify-content: space-between; align-items: center;">
+
+        {{ tnaButton({
+          text: "Previous image",
+          href: previousPage,
+          icon: "arrow-left"
+        }) }}
+
+        {{ tnaButton({
+          text: "Next image",
+          href: nextPage,
+          icon: "arrow-right",
+          rightAlignIcon: true
+        }) }}
+
+      </div>
+
+      <div class="tna-container">
+        <div class="tna-column tna-column--full">
+
+          <figure class="tna-image-viewer-image__image">
+            {% block image %}
+              <img src="https://placehold.co/1000x1000" alt="">
+            {% endblock %}
+          </figure>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}
+
+{% block footerContent %}
+  <a href="image-viewer-list">View all images</a>
+{% endblock %}
