@@ -1,3 +1,12 @@
+// ============================================================================
+// Image Viewer Components
+// ============================================================================
+
+// ----------------------------------------------------------------------------
+// Image Viewer Start Component
+// ----------------------------------------------------------------------------
+// Initial component displayed on record page when starting the image viewer
+// Provides entry point with image preview and CTAs to open accessible viewer or Universal Viewer
 
 .tna-image-viewer-start {
   padding: 1rem;
@@ -17,49 +26,11 @@
   gap: 1rem;
 }
 
-body:has(.tna-image-viewer-layout__header) {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-
-  @media (min-width: 1000px) {
-    height: 100vh;
-    overflow: hidden;
-  }
-}
-
-body:has(.tna-image-viewer-layout__header) main {
-  flex: 1;
-
-  @media (min-width: 1000px) {
-    min-height: 0;
-    overflow-y: auto;
-  }
-}
-
-.tna-image-viewer-layout__header,
-.tna-image-viewer-layout__footer {
-  flex-shrink: 0;
-}
-
-.tna-image-viewer-layout__footer .tna-container {
-  @media (min-width: 1000px) {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
-    align-items: center;
-  }
-}
-
-.tna-image-viewer__grid {
-  background-color: #323334;
-}
-
-.tna-index-grid--max {
-  .tna-container {
-    max-width: none;
-    padding: 0;
-  }
-}
+// ----------------------------------------------------------------------------
+// Image Viewer Image Component
+// ----------------------------------------------------------------------------
+// Component for displaying individual images in the viewer
+// Handles image centering and responsive sizing
 
 .tna-image-viewer-image__image {
   display: flex;
@@ -82,6 +53,67 @@ body:has(.tna-image-viewer-layout__header) main {
   height: auto;
   object-fit: contain;
 }
+
+// ============================================================================
+// Image Viewer Layout Structure
+// ============================================================================
+
+// ----------------------------------------------------------------------------
+// Body Layout Adjustments
+// ----------------------------------------------------------------------------
+// Sets up full-height flex layout when image viewer header is present
+// Fixes header and footer in position on larger screen sizes
+// (@nationalarchives/frontend cant't be included in Sass files so media queries are used instead)
+// To remove the pinned header and footer, the styles within media queries can be removed.
+
+body:has(.tna-image-viewer-layout__header) {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 1000px) {
+    height: 100vh;
+    overflow: hidden;
+  }
+}
+
+body:has(.tna-image-viewer-layout__header) main {
+  flex: 1;
+
+  @media (min-width: 1000px) {
+    min-height: 0;
+    overflow-y: auto;
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Header and Footer Layout
+// ----------------------------------------------------------------------------
+
+.tna-image-viewer-layout__header,
+.tna-image-viewer-layout__footer {
+  flex-shrink: 0;
+}
+
+// ----------------------------------------------------------------------------
+// Footer Grid Layout
+// ----------------------------------------------------------------------------
+// Three-column grid layout for footer content on desktop
+// Accommodates back link, pagination/navigation, or back link
+
+.tna-image-viewer-layout__footer .tna-container {
+  @media (min-width: 1000px) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
+    align-items: center;
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Image Display Layout
+// ----------------------------------------------------------------------------
+// Full-height flex layout for individual image display pages
+// Ensures images are centered both horizontally and vertically
 
 @media (min-width: 1000px) {
   body:has(.tna-image-viewer-image__image) main {
@@ -108,5 +140,23 @@ body:has(.tna-image-viewer-layout__header) main {
       align-items: center;
       justify-content: center;
     }
+  }
+}
+
+// ============================================================================
+// Component Tweaks
+// ============================================================================
+
+// ----------------------------------------------------------------------------
+// Image Viewer Grid Styling
+// ----------------------------------------------------------------------------
+// Remove max-width from index grid container
+
+.tna-image-viewer__grid {
+  background-color: #323334;
+
+  .tna-container {
+    max-width: none;
+    padding: 0;
   }
 }
