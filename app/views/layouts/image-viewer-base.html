@@ -52,19 +52,21 @@
 {% endblock %}
 
 {% block footer %}
-  <footer class="tna-image-viewer-layout__footer tna-!--padding-vertical-s">
-    <div class="tna-container tna-container--max">
-      <div class="tna-column">
+  <footer class="tna-footer tna-image-viewer-layout__footer">
+    <div class="tna-footer__inner tna-!--padding-bottom-s">
+      <div class="tna-container tna-container--max">
+        <div class="tna-column">
 
-        {{ tnaBackLink({
-          text: "Back to record description",
-          href: "/"
-        }) }}
+          {{ tnaBackLink({
+            text: "Back to record description",
+            href: "/"
+          }) }}
 
-      </div>
+        </div>
 
-      <div class="tna-column">
-        {% block footerContent %}{% endblock %}
+        <div class="tna-column tna-footer__image-viewer-content">
+          {% block footerContent %}{% endblock %}
+        </div>
       </div>
     </div>
   </footer>
