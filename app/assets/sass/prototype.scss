@@ -90,6 +90,12 @@ body:has(.tna-image-viewer-layout__header) main {
 // Header and Footer Layout
 // ----------------------------------------------------------------------------
 
+.tna-image-viewer-layout__header {
+  .tna-container {
+    align-items: center;
+  }
+}
+
 .tna-image-viewer-layout__header,
 .tna-image-viewer-layout__footer {
   flex-shrink: 0;
@@ -107,6 +113,10 @@ body:has(.tna-image-viewer-layout__header) main {
     grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
     align-items: center;
   }
+}
+
+.tna-footer__image-viewer-content {
+  text-align: center;
 }
 
 // ----------------------------------------------------------------------------
