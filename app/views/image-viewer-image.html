@@ -1,7 +1,7 @@
 {% extends 'layouts/image-viewer-base.html' %}
 
 {# Default navigation for square image (base template) #}
-{% set previousPage = previousPage | default('/image-viewer-image-portrait') %}
+{% set previousPage = previousPage | default('/image-viewer-image-square') %}
 {% set nextPage = nextPage | default('/image-viewer-image-landscape') %}
 
 {% block afterHeader %}
@@ -39,7 +39,7 @@
 
           <figure class="tna-image-viewer-image__image">
             {% block image %}
-              <img src="https://placehold.co/1000x1000" alt="">
+              <img src="/public/img/prototype-full-size.jpg" alt="">
             {% endblock %}
           </figure>
 
