@@ -145,16 +145,19 @@ body:has(.tna-image-viewer-layout__header) main {
   .tna-image-viewer-image__image {
     position: relative;
   }
+}
 
-  .tna-image-viewer-image__navigation {
+.tna-image-viewer-image__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media (min-width: 1000px) {
     position: absolute;
     top: 33vh;
     left: 0;
     right: 0;
     transform: translateY(-50%);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
   }
 }
 
