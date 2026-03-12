@@ -1,8 +1,8 @@
 {% extends 'layouts/image-viewer-base.html' %}
 
 {# Default navigation for square image (base template) #}
-{% set previousPage = previousPage | default('/image-viewer-image-square') %}
-{% set nextPage = nextPage | default('/image-viewer-image-landscape') %}
+{% set previousPage = previousPage | default('/image-viewer-image-0281') %}
+{% set nextPage = nextPage | default('/image-viewer-image-0006') %}
 
 {% block afterHeader %}
   {{ tnaWarning({
@@ -14,10 +14,10 @@
 
 {% block mainContent %}
 
-  <div class="tna-theme-dark tna-image-viewer-layout__content" style="position: relative;">
+  <div class="tna-theme-dark tna-image-viewer-layout__content">
     <div class="tna-section">
 
-      <div style="position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%); display: flex; justify-content: space-between; align-items: center;">
+      <div class="tna-image-viewer-image__navigation">
 
         {{ tnaButton({
           text: "Previous image",

@@ -1,0 +1,8 @@
+{% extends 'image-viewer-image.html' %}
+
+{% set previousPage = previousPage | default('/image-viewer-image') %}
+{% set nextPage = nextPage | default('/image-viewer-image-0085') %}
+
+{% block image %}
+  <img src="/public/img/0006-full-size.jpg" class="hi-res" alt="">
+{% endblock %}
