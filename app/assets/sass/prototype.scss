@@ -108,8 +108,21 @@ body:has(.tna-image-viewer-layout__header) main {
   }
 }
 
+.tna-image-viewer-layout__footer-controls {
+  justify-content: center;
+}
+
 .tna-footer__image-viewer-content {
   text-align: center;
+}
+
+// ----------------------------------------------------------------------------
+// Image viewer list view
+// ----------------------------------------------------------------------------
+
+.tna-image-viewer__back-link {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 // ----------------------------------------------------------------------------
@@ -151,6 +164,7 @@ body:has(.tna-image-viewer-layout__header) main {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
 
   @media (min-width: 1000px) {
     position: absolute;
