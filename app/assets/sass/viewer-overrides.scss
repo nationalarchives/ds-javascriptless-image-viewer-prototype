@@ -16,11 +16,19 @@
   --uv-thumb-width: 220px;
   --uv-grid-left-width-open: 400px;
 
-  flex: 1 1 auto;
   width: 100%;
-  height: calc(100dvh - 14rem);
-  min-height: 28rem;
+  // Viewport-tall stage in document flow so the image is usable on small
+  // portrait screens without locking body overflow. Header and footer sit
+  // above and below; users scroll the page to arrive at or leave the viewer.
+  height: 100vh;
+  height: 100svh;
   background: #000;
+
+  @include from(desktop) {
+    height: auto;
+    flex: 1 1 auto;
+    min-height: 0;
+  }
 
   // Stock UV: .centerPanel is absolute + width 100%, so it runs under the open
   // Contents panel and the previous-image control becomes unclickable.
@@ -78,21 +86,26 @@
   }
 }
 
-// Page chrome once progressive enhancement has mounted UV
-body:has(.tna-image-viewer-enhanced--active) {
-  // overflow: hidden;
+// Desktop: fill leftover viewport between pinned header and footer.
+// Below desktop the viewer is 100svh in a scrollable page instead, so the
+// image is not squeezed by stacked chrome and users can scroll past it.
+@include from(desktop) {
+  body:has(.tna-image-viewer-enhanced--active) {
+    height: 100dvh;
+    overflow: hidden;
 
-  main {
+    main {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      flex: 1;
+    }
+  }
+
+  .tna-image-viewer-enhanced--active {
     display: flex;
     flex-direction: column;
     min-height: 0;
     flex: 1;
   }
-}
-
-.tna-image-viewer-enhanced--active {
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-  flex: 1;
 }
