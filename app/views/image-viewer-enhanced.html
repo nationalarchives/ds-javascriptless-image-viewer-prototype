@@ -17,10 +17,10 @@
 {% set imageClass = imageClass | default('') %}
 {% set imageLabel = imageLabel | default('Image 1 of 1849') %}
 
-{% set useLocalManifest = true %}
+{% set useLocalManifest = false %}
 
 {% set localManifestUrl = '/public/iiif/adm-177-5/manifest.json' %}
-{% set remoteManifestUrl = 'https://wellcomelibrary.org/iiif/b18035723/manifest' %}
+{% set remoteManifestUrl = 'https://rosetta-staging.k-int.com/gateway/iiif/3/manifest/D1628039' %}
 
 {% set manifestUrl = localManifestUrl if useLocalManifest else remoteManifestUrl %}
 
