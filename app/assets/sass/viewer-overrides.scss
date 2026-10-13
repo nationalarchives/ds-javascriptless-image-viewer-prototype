@@ -13,9 +13,6 @@
 // --uv-grid-left-width-open Left panel column width (must fit thumb + label)
 
 .tna-universal-viewer {
-  --uv-thumb-width: 220px;
-  --uv-grid-left-width-open: 400px;
-
   width: 100%;
   // Viewport-tall stage in document flow so the image is usable on small
   // portrait screens without locking body overflow. Header and footer sit
@@ -59,15 +56,8 @@
     pointer-events: auto !important;
   }
 
-  // One-column thumbs: UV forces ~98px wraps; show full assets wider.
-  // (Two-up not used — pagingEnabled is false in image-viewer-enhanced.js.)
-  .thumbs {
-    width: calc(var(--uv-thumb-width) + 8rem) !important;
-  }
 
   .thumb.oneCol {
-    grid-template-columns: var(--uv-thumb-width) 1fr !important;
-
     .wrap {
       width: var(--uv-thumb-width) !important;
       height: auto !important;
@@ -83,6 +73,12 @@
         display: block;
       }
     }
+  }
+
+  // Expanded gallery stringifies a missing canvas label via String(null).
+  // UV then .show()s the caption, so this has to beat that inline display.
+  .galleryView .thumb .label[title="null"] {
+    display: none !important;
   }
 }
 
