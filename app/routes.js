@@ -15,3 +15,8 @@ govukPrototypeKit.requests.serveDirectory(
 )
 
 // Add your routes here
+router.get('/image-viewer-enhanced-list/:recordId', (req, res) => {
+  res.render('image-viewer-enhanced-list', {
+    recordId: req.params.recordId
+  })
+})
