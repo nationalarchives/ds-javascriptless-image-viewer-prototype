@@ -15,8 +15,19 @@ govukPrototypeKit.requests.serveDirectory(
 )
 
 // Add your routes here
-router.get('/image-viewer-enhanced-list/:recordId', (req, res) => {
+// Optional quality comes after the record id so a bare id is never read as a quality.
+// /image-viewer-enhanced-list/C14017174
+// /image-viewer-enhanced-list/C14017174/mid
+// /image-viewer-enhanced-list/C14017174/low
+const manifestQualities = ['low', 'mid']
+
+router.get('/image-viewer-enhanced-list/:recordId/:quality?', (req, res) => {
+  const quality = manifestQualities.includes(req.params.quality)
+    ? req.params.quality
+    : undefined
+
   res.render('image-viewer-enhanced-list', {
-    recordId: req.params.recordId
+    recordId: req.params.recordId,
+    quality
   })
 })
