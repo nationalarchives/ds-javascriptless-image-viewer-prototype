@@ -1,4 +1,7 @@
 @use "breakpoints" as *;
+@use "node_modules/@nationalarchives/frontend/nationalarchives/tools/a11y" as a11yTools;
+@use "node_modules/@nationalarchives/frontend/nationalarchives/tools/colour";
+@use "node_modules/@nationalarchives/frontend/nationalarchives/variables/a11y" as a11yVars;
 
 // ----------------------------------------------------------------------------
 // Universal Viewer overrides
@@ -79,6 +82,162 @@
   // UV then .show()s the caption, so this has to beat that inline display.
   .galleryView .thumb .label[title="null"] {
     display: none !important;
+  }
+
+  // Site focus (black and yellow, swapped on the dark template) instead of
+  // UV's cyan rings and browser Highlight outlines. The mixin uses
+  // !important, which is what beats the extension stylesheet UV injects.
+  :focus-visible {
+    @include a11yTools.focus-outline;
+  }
+
+  a:active,
+  button:active,
+  .btn:active,
+  input:active,
+  select:active,
+  textarea:active,
+  summary:active {
+    @include a11yTools.active-outline;
+  }
+
+  // These controls sit flush in a bar or an overflow:hidden panel, which
+  // clips the outside ring. Draw the same yellow-and-black pair inside.
+  .viewportNavButton:focus-visible,
+  .paging.btn:focus-visible,
+  .headerPanel .imageBtn:focus-visible,
+  .tna-uv-panel-toggle:focus-visible,
+  .tna-uv-panel-toggle.tna-uv-panel-focus:focus {
+    outline-offset: a11yVars.$focus-outline-outer-width * -1 !important;
+    box-shadow: inset 0 0 0 a11yVars.$focus-outline-total-width colour.brand-colour("yellow") !important;
+
+    .tna-template--dark-theme & {
+      box-shadow: inset 0 0 0 a11yVars.$focus-outline-total-width #000 !important;
+    }
+
+    .tna-template--system-theme & {
+      @media (prefers-color-scheme: dark) {
+        box-shadow: inset 0 0 0 a11yVars.$focus-outline-total-width #000 !important;
+      }
+    }
+  }
+
+  // UV paints a second cyan ring on the icon inside a focused button.
+  .btn:focus i,
+  .btn:focus-visible i,
+  .btn:focus span,
+  .btn:focus-visible span {
+    outline: none !important;
+  }
+
+  // Thumbs use a cyan border as their focus style, and the button is wider
+  // than the image because of the label column. Ring the image instead.
+  .thumb:focus,
+  .thumb:focus-visible {
+    border: 0 !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  .thumb:focus-visible .wrap {
+    @include a11yTools.focus-outline;
+  }
+
+  // The thumbnail list is overflow:hidden and flush to its edges, which
+  // clips the site ring (3px offset + 3px outline) down to a single line.
+  .thumbs {
+    padding: a11yVars.$focus-outline-total-width;
+  }
+
+  .iiif-gallery-component .header .btn.size-down:focus,
+  .iiif-gallery-component .header .btn.size-up:focus,
+  .iiif-gallery-component .header .btn.size-down:focus-visible,
+  .iiif-gallery-component .header .btn.size-up:focus-visible {
+    border-color: #565656 !important;
+  }
+
+  .tna-uv-panel-toggles {
+    float: left;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    gap: 4px;
+    margin-right: 4px;
+  }
+
+  .top .title.tna-uv-panel-focus:focus {
+    @include a11yTools.focus-outline;
+  }
+
+  .tna-uv-panel-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 28px;
+    padding: 0 8px;
+    border: 1px solid #565656;
+    background: transparent;
+    color: #fff;
+    font: inherit;
+    font-size: 13px;
+    line-height: 1;
+    cursor: pointer;
+
+    .fa-solid {
+      flex-shrink: 0;
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    &[aria-expanded="true"] {
+      background: #424242;
+      border-color: #fff;
+    }
+  }
+
+  // The page controls are a fixed 390px block in the middle of the bar.
+  // Below desktop the named buttons move onto their own row so they are
+  // not covered by that block. UV sizes the stage from the header height.
+  @media (max-width: ($breakpoint-desktop - 1px)) {
+    .headerPanel {
+      height: 74px !important;
+    }
+
+    .tna-uv-panel-toggles {
+      position: absolute;
+      top: 40px;
+      left: 8px;
+      float: none;
+      width: auto;
+      height: 34px;
+      margin-right: 0;
+    }
+  }
+
+  // UV reveals this skip link in a 14px strip under the site header, so the
+  // sentence and its ring are cut off. Place the full line inside the viewer.
+  a.sr-only:focus-visible {
+    position: absolute !important;
+    z-index: 30;
+    top: a11yVars.$focus-outline-total-width + 2px;
+    left: a11yVars.$focus-outline-total-width + 2px;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0.25rem 0.5rem;
+    overflow: visible !important;
+    clip: auto !important;
+    white-space: normal !important;
+    background-color: #000;
+    line-height: 1.4;
+  }
+
+  input[type="range"]:focus::-webkit-slider-runnable-track,
+  input[type="range"]:focus::-moz-range-track,
+  input[type="range"]:focus::-webkit-slider-thumb,
+  input[type="range"]:focus::-moz-range-thumb {
+    border-color: transparent !important;
+    outline: none !important;
   }
 }
 
