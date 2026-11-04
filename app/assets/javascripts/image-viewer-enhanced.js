@@ -218,7 +218,11 @@ const UV_CONFIG = {
     openSeadragonCenterPanel: {
       options: {
         subtitleEnabled: false,
-        autoHideControls: false
+        autoHideControls: false,
+        // cross-origin fix
+        // Needs UV PR #1920, applied by patches/universalviewer+4.4.4.patch
+        // until it ships: https://github.com/UniversalViewer/universalviewer/pull/1920
+        drawer: 'canvas'
       }
     },
     downloadDialogue: {

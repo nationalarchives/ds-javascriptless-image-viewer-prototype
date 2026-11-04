@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "postinstall": "patch-package",
     "dev": "govuk-prototype-kit dev",
     "serve": "govuk-prototype-kit serve",
     "start": "govuk-prototype-kit start"
@@ -9,6 +10,9 @@
     "@nationalarchives/frontend": "^0.31.0",
     "govuk-frontend": "5.13.0",
     "govuk-prototype-kit": "13.18.1",
-    "universalviewer": "^4.4.2"
+    "universalviewer": "^4.4.4"
+  },
+  "devDependencies": {
+    "patch-package": "^8.0.1"
   }
 }
