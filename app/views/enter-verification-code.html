@@ -1,0 +1,92 @@
+{% extends 'layouts/base.html' %}
+
+{% from 'nationalarchives/components/breadcrumbs/macro.njk' import tnaBreadcrumbs %}
+{% from "nationalarchives/components/fieldset/macro.njk" import tnaFieldset %}
+{% from "nationalarchives/components/text-input/macro.njk" import tnaTextInput %}
+{% from "nationalarchives/components/button/macro.njk" import tnaButton %}
+
+{% set pageTitle = 'Enter verification code' %}
+{% set theme = 'light' %}
+{% set themeAccent = 'green' %}
+
+{% block beforeContent %}
+<div class="tna-container">
+  {{ tnaBreadcrumbs({
+    items: [
+      {
+        text: 'Home',
+        href: '/'
+      }
+    ],
+    classes: 'tna-column tna-column--full tna-!--padding-vertical-s'
+  }) }}
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="tna-section">
+  <div class="tna-container">
+    <div class="tna-column tna-column--width-2-3 tna-column--width-5-6-medium tna-column--full-small tna-column--full-tiny">
+
+      <h1 class="tna-heading-xl">
+        {{ pageTitle }}
+      </h1>
+
+      <form action="#" method="post" class="tna-!--margin-top-m">
+
+        <p><strong>Check your email</strong></p>
+
+        <p>A verification code has been sent to your email address. Enter it below to complete your
+registration.</p>
+
+        {{ tnaTextInput({
+          id: "verification-code",
+          name: "verification-code",
+          label: "Enter the 6-digit code sent to your email.",
+          headingSize: "xs",
+          size: "m"
+        }) }}
+
+        <div class="tna-!--margin-top-m tna-!--margin-bottom-m">
+          {{ tnaButton({
+            text: "Verify account",
+            type: "submit"
+          }) }}
+        </div>
+
+        <a href="#">Resend code</a>
+
+
+      </form>
+
+    </div>
+  </div>
+
+  <div class="tna-container tna-!--margin-top-m">
+    <div class="tna-column tna-column--full">
+      <div class="tna-!--padding-vertical-m tna-background-accent-light">
+
+        <div class="tna-container">
+          <div class="tna-column tna-column--full">
+
+            <h3>Verification help</h3>
+
+            <p class="tna-!--margin-top-s">If you don&apos;t receive your verification code:</p>
+
+            <ul class="tna-ul">
+              <li>check your spam or junk folder</li>
+              <li>wait a few minutes in case the email has been delayed</li>
+              <li>make sure you&apos;ve entered the correct email address</li>
+              <li>click &apos;Resend code&apos; above</li>
+              <li>try <a href="#">creating an account</a> again</li>
+              <li><a href="#">contact us</a> if you have tried all these steps and still have not received a verification code.</li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

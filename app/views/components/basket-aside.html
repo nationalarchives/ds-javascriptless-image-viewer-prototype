@@ -1,0 +1,21 @@
+{% macro basketAside(params) %}
+  {% set summary = params if params else {} %}
+  {% set count = summary.count | default(0, true) %}
+
+  <div class="tna-column tna-column--width-1-3 tna-column--width-2-3-medium tna-column--full-small tna-column--full-tiny">
+    <aside class="tna-aside tna-background-accent-light">
+      <h2 class="tna-heading-m">Order summary ({{ count }} {{ "item" if count == 1 else "items" }})</h2>
+
+      {% if summary.items and summary.items.length %}
+        {% for item in summary.items %}
+          <div class="basket-checkout-summary-item{% if item.total %} basket-checkout-summary-item--total{% endif %}">
+            <div>{% if item.total %}<strong>{{ item.label }}</strong>{% else %}{{ item.label }}{% endif %}</div>
+            <div>{% if item.total %}GBP <strong>{{ item.amount }}</strong>{% else %}{{ item.amount }}{% endif %}</div>
+          </div>
+        {% endfor %}
+      {% else %}
+        Order total: GBP {{ summary.total or "£0.00" }}
+      {% endif %}
+    </aside>
+  </div>
+{% endmacro %}

@@ -1,0 +1,112 @@
+{% extends 'layouts/base.html' %}
+
+{% from 'nationalarchives/components/breadcrumbs/macro.njk' import tnaBreadcrumbs %}
+{% from "nationalarchives/components/fieldset/macro.njk" import tnaFieldset %}
+{% from "nationalarchives/components/text-input/macro.njk" import tnaTextInput %}
+{% from "nationalarchives/components/checkboxes/macro.njk" import tnaCheckboxes %}
+{% from "nationalarchives/components/button/macro.njk" import tnaButton %}
+
+{% set pageTitle = 'Create an account' %}
+{% set theme = 'light' %}
+{% set themeAccent = 'green' %}
+
+{% block beforeContent %}
+<div class="tna-container">
+  {{ tnaBreadcrumbs({
+    items: [
+      {
+        text: 'Home',
+        href: '/'
+      }
+    ],
+    classes: 'tna-column tna-column--full tna-!--padding-vertical-s'
+  }) }}
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="tna-section">
+  <div class="tna-container">
+    <div class="tna-column tna-column--width-2-3 tna-column--width-5-6-medium tna-column--full-small tna-column--full-tiny">
+      <form action="/sign-in" method="post">
+
+        {% call tnaFieldset({
+          legend: pageTitle,
+          headingLevel: 1,
+          headingSize: "xl",
+          id: "search-manor"
+        }) %}
+
+          {{ tnaTextInput({
+            label: "Email address",
+            type: "email",
+            id: "email",
+            name: "email",
+            size: "l",
+            hint: "We'll use this to send you important account updates"
+          }) }}
+
+          <a href="/sign-in/forgot-password">Forgotten username?</a>
+
+          {{ tnaTextInput({
+            label: "Password",
+            password: true,
+            id: "password",
+            name: "password",
+            size: "l",
+            hint: "Minimum 8 characters, including a number and a special character (@#$*&)"
+          }) }}
+
+          {{ tnaCheckboxes({
+            id: "terms",
+            name: "terms",
+            small: true,
+            items: [
+              {
+                text: "I have read and agree to the <a href=\"/terms-and-conditions\">Terms and Conditions</a> and <a href=\"/privacy-policy\">Privacy Policy</a>"|safe,
+                value: "agree"
+              }
+            ]
+          }) }}
+
+          <div>
+            {{ tnaButton({
+              text: "Create account",
+              type: "submit"
+            }) }}
+          </div>
+
+        {% endcall %}
+
+      </form>
+
+    </div>
+  </div>
+
+  <div class="tna-container tna-!--margin-top-m">
+    <div class="tna-column tna-column--full">
+      <div class="tna-!--padding-vertical-m tna-background-accent-light">
+
+        <div class="tna-container">
+          <div class="tna-column tna-column--full">
+
+            <h3>Benefits of creating an account</h3>
+
+            <p class="tna-!--margin-top-s">You will be able to:</p>
+
+            <ul class="tna-ul">
+              <li>view digital records for free</li>
+              <li>download free to access digital records</li>
+              <li>purchase digital records to download</li>
+              <li>manage all your downloads in one place</li>
+              <li>experience a quicker check out for your purchases.</li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

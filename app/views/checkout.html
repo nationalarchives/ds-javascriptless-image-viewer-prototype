@@ -1,0 +1,107 @@
+{% extends 'layouts/base.html' %}
+
+{% from 'nationalarchives/components/button/macro.njk' import tnaButton %}
+{% from 'nationalarchives/components/breadcrumbs/macro.njk' import tnaBreadcrumbs %}
+{% from 'nationalarchives/components/text-input/macro.njk' import tnaTextInput %}
+{% from 'nationalarchives/components/checkboxes/macro.njk' import tnaCheckboxes %}
+{% from './components/account-notice.html' import accountNotice %}
+{% from './components/basket-aside.html' import basketAside %}
+
+{% set pageTitle = 'Checkout' %}
+{% set theme = 'light' %}
+{% set themeAccent = 'green' %}
+
+{% block beforeContent %}
+<div class="tna-container">
+  {{ tnaBreadcrumbs({
+    items: [
+      {
+        text: 'Home',
+        href: '/'
+      },
+      {
+        text: 'Basket',
+        href: '/basket-full-signed-in' if signedIn else '/basket-full-guest'
+      }
+    ],
+    classes: 'tna-column tna-column--full tna-!--padding-vertical-s'
+  }) }}
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="tna-section">
+  <div class="tna-container">
+    <div class="tna-column tna-column--width-2-3 tna-column--width-5-6-medium tna-column--full-small tna-column--full-tiny">
+      <h1 class="tna-heading-xl">
+        {{ pageTitle }}
+      </h1>
+
+      {{ accountNotice({ signedIn: signedIn, return: 'checkout' }) }}
+
+      <p>When you click &lsquo;Pay now&rsquo; you will be taken to the GOV.UK Pay website to make payment. You will not be redirected back to this site.</p>
+
+      {% if signedIn %}
+        <div class="basket-checkout-button tna-!--margin-top-m">
+          {{ tnaButton({
+            text: "Pay now",
+            href: "/checkout-signed-in" if signedIn else "/checkout"
+          }) }}
+        </div>
+      {% else %}
+        <form action="">
+          {{ tnaTextInput({
+            label: "Enter your email address to continue as a guest",
+            type: "email",
+            id: "email",
+            name: "email",
+            size: "l"
+          }) }}
+
+          <p>When you click &lsquo;Pay now&rsquo; you will be taken to the GOV.UK Pay website to make payment.</p>
+
+          {{ tnaCheckboxes({
+            id: "terms",
+            name: "terms",
+            small: true,
+            items: [
+              {
+                text: "I have read and agree to the <a href=\"/terms-and-conditions\">Terms and Conditions</a> and <a href=\"/privacy-policy\">Privacy Policy</a>"|safe,
+                value: "agree"
+              }
+            ]
+          }) }}
+
+          <div class="basket-checkout-button tna-!--margin-top-m">
+            {{ tnaButton({
+              text: "Pay now",
+              buttonElement: true,
+              buttonType: "submit"
+            }) }}
+          </div>
+        </form>
+      {% endif %}
+
+    </div>
+
+    {{ basketAside({
+      count: 1,
+      items: [
+        {
+          label: "Admiralty: Navy Lists, Confidential Edition. Navy lists, confidential edition. INDEXED. ADM 177/5",
+          amount: "£2.50"
+        },
+        {
+          label: "Including VAT",
+          amount: "£0.50"
+        },
+        {
+          label: "Order total",
+          amount: "£2.50",
+          total: true
+        }
+      ]
+    }) }}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'layouts/base.html' %}
+
+{% from 'nationalarchives/components/breadcrumbs/macro.njk' import tnaBreadcrumbs %}
+{% from "nationalarchives/components/button/macro.njk" import tnaButton %}
+{% from './components/basket-item.html' import basketItem %}
+{% from './components/basket-accordion.html' import basketAccordion %}
+{% from './components/basket-aside.html' import basketAside %}
+{% from './components/account-notice.html' import accountNotice %}
+
+{% set pageTitle = 'Basket' %}
+{% set theme = 'light' %}
+{% set themeAccent = 'green' %}
+
+{% block beforeContent %}
+<div class="tna-container">
+  {{ tnaBreadcrumbs({
+    items: [
+      {
+        text: 'Home',
+        href: '/'
+      }
+    ],
+    classes: 'tna-column tna-column--full tna-!--padding-vertical-s'
+  }) }}
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="tna-section">
+  <div class="tna-container">
+    <div class="tna-column tna-column--width-2-3 tna-column--width-5-6-medium tna-column--full-small tna-column--full-tiny">
+      <h1 class="tna-heading-xl">
+        {{ pageTitle }}
+      </h1>
+
+      {{ accountNotice({ signedIn: signedIn }) }}
+
+      {{ basketItem({
+        count: 1,
+        imageSrc: "https://via.placeholder.com/150",
+        imageAlt: "",
+        title: "Admiralty: Navy Lists, Confidential Edition. Navy lists, confidential edition. INDEXED.",
+        reference: "ADM 177/5",
+        price: "£2.50",
+        format: "PDF (113 MB)"
+      }) }}
+
+      <div class="basket-checkout-button tna-!--margin-top-m">
+        {{ tnaButton({
+          text: "Check out",
+          href: "/checkout-signed-in" if signedIn else "/checkout"
+        }) }}
+      </div>
+
+      {{ basketAccordion() }}
+
+    </div>
+
+    {{ basketAside({
+      count: 1,
+      items: [
+        {
+          label: "Admiralty: Navy Lists, Confidential Edition. Navy lists, confidential edition. INDEXED. ADM 177/5",
+          amount: "£2.50"
+        },
+        {
+          label: "Including VAT",
+          amount: "£0.50"
+        },
+        {
+          label: "Order total",
+          amount: "£2.50",
+          total: true
+        }
+      ]
+    }) }}
+  </div>
+</div>
+{% endblock %}

@@ -1,11 +1,12 @@
 {% extends 'layouts/base.html' %}
 
+{% from 'nationalarchives/components/accordion/macro.njk' import tnaAccordion %}
 {% from 'nationalarchives/components/breadcrumbs/macro.njk' import tnaBreadcrumbs %}
 {% from "nationalarchives/components/button/macro.njk" import tnaButton %}
 
 {% set pageTitle = 'Record page image viewer prototype' %}
 {% set theme = 'light' %}
-{% set themeAccent = 'blue' %}
+{% set themeAccent = 'green' %}
 
 {% block beforeContent %}
 <div class="tna-container">
@@ -43,6 +44,11 @@
 
         <div class="tna-image-viewer-start__buttons tna-!--margin-top-m">
           {{ tnaButton({
+            text: "Sign in to open in Record Viewer",
+            href: "/image-viewer-list"
+          }) }}
+
+          {{ tnaButton({
             text: "Open in our accessible viewer",
             href: "/image-viewer-list"
           }) }}
@@ -54,6 +60,46 @@
         </div>
 
       </div>
+
+      {% set howToOrderContent %}
+        <div>
+
+          <p>
+            <span class="tna-visually-hidden">Price:</span>
+            &pound;2.50
+          </p>
+
+          <div>
+            <p>You can download this record from us.</p>
+
+            <p>PDF download size approximately 113MB.</p>
+          </div>
+
+        </div>
+
+        {{ tnaButton({
+          text: "Add to basket",
+          href: "/basket-full-guest"
+        }) }}
+      {% endset %}
+
+      {{ tnaAccordion({
+        itemHeadingSize: 'xl',
+        items: [
+          {
+            title: "How to order it",
+            body: howToOrderContent
+          },
+          {
+            title: "Series information",
+            text: "Placeholder text for the purpose of this prototype"
+          },
+          {
+            title: "Catalogue hierarchy",
+            text: "Placeholder text for the purpose of this prototype"
+          }
+        ]
+      }) }}
 
 
     </div>

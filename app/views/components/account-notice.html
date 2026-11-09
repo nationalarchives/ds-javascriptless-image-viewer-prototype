@@ -1,0 +1,11 @@
+{% macro accountNotice(params) %}
+  {% set notice = params if params else {} %}
+
+  <div class="tna-aside tna-!--margin-top-s tna-background-tint">
+    {% if notice.signedIn %}
+      <p>Signed in as <strong>user@email-address.com</strong> <a href="/your-account">Your account</a></p>
+    {% else %}
+      <p><a href="/sign-in?return={{ notice.return or 'basket' }}">Sign in</a> or <a href="/create-account">create an account</a> for a faster checkout experience. Alternatively, continue as a guest.</p>
+    {% endif %}
+  </div>
+{% endmacro %}

@@ -1,0 +1,28 @@
+{% from "nationalarchives/components/accordion/macro.njk" import tnaAccordion %}
+
+{% macro basketAccordion() %}
+  <h2 class="tna-heading-l tna-!--margin-top-l">Useful information</h2>
+
+  {{ tnaAccordion({
+    itemHeadingLevel: 3,
+    classes: "tna-!--margin-top-s",
+    items: [
+      {
+        title: "Your orders",
+        text: "Placeholder text"
+      },
+      {
+        title: "Support with your order",
+        text: "Placeholder text"
+      },
+      {
+        title: "Benefits of creating an account",
+        text: "Placeholder text"
+      },
+      {
+        title: "Usage rights",
+        text: "Placeholder text"
+      }
+    ]
+  }) }}
+{% endmacro %}

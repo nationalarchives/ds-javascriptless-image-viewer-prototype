@@ -1,0 +1,56 @@
+@use "node_modules/@nationalarchives/frontend/nationalarchives/tools/borders";
+@use "node_modules/@nationalarchives/frontend/nationalarchives/tools/colour";
+@use "node_modules/@nationalarchives/frontend/nationalarchives/tools/spacing";
+
+.basket-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1.5rem;
+  margin-top: spacing.space(1);
+
+  @include borders.rounded-border;
+  @include colour.colour-border("base-keyline", 2px, solid);
+
+  &__count {
+    color: #fff;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    align-self: center;
+    min-width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+
+  &__content {
+    flex: 1;
+  }
+
+  &__actions {
+    margin-left: auto;
+  }
+}
+
+.basket-checkout-button {
+  text-align: right;
+}
+
+.basket-checkout-summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: spacing.space(1);
+}
+
+.basket-checkout-summary-item--total {
+  border-top: 1px dashed;
+  border-bottom: 1px dashed;
+  padding-top: spacing.space(0.25);
+  padding-bottom: spacing.space(0.25);
+}

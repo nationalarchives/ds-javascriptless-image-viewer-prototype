@@ -1,0 +1,44 @@
+{% macro basketItem(params) %}
+
+  {% set item = params if params else {} %}
+
+  <div class="basket-item">
+
+    {% if item.count %}
+    <div class="basket-item__count tna-background-contrast">
+      <p><span class="tna-visually-hidden">Item count: </span>{{ item.count }}</p>
+    </div>
+    {% endif %}
+
+    {% if item.imageSrc %}
+    <div class="basket-item__image">
+      <img src="{{ item.imageSrc }}" alt="{{ item.imageAlt or '' }}">
+    </div>
+    {% endif %}
+
+    {% if item.title or item.reference or item.price or item.format %}
+    <div class="basket-item__content">
+      {% if item.title %}
+      <h3 class="tna-heading-m">{{ item.title }}</h3>
+      {% endif %}
+
+      {% if item.reference %}
+      <p class="tna-!--no-margin-top">{{ item.reference }}</p>
+      {% endif %}
+
+      {% if item.price %}
+      <p class="tna-!--no-margin-top">{{ item.price }}</p>
+      {% endif %}
+
+      {% if item.format %}
+      <p class="tna-!--margin-top-xs">{{ item.format }}</p>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    <a href="/basket-empty" class="basket-item__actions" aria-label="Remove from basket{% if item.title %}: {{ item.title }}{% endif %}">
+      Remove
+    </a>
+
+  </div>
+{% endmacro %}

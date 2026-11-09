@@ -1,0 +1,62 @@
+{% extends 'layouts/base.html' %}
+
+{% from 'nationalarchives/components/breadcrumbs/macro.njk' import tnaBreadcrumbs %}
+{% from "nationalarchives/components/fieldset/macro.njk" import tnaFieldset %}
+{% from "nationalarchives/components/text-input/macro.njk" import tnaTextInput %}
+{% from "nationalarchives/components/button/macro.njk" import tnaButton %}
+
+{% set pageTitle = 'You are now signed in' %}
+{% set theme = 'light' %}
+{% set themeAccent = 'green' %}
+
+{% block beforeContent %}
+<div class="tna-container">
+  {{ tnaBreadcrumbs({
+    items: [
+      {
+        text: 'Home',
+        href: '/'
+      }
+    ],
+    classes: 'tna-column tna-column--full tna-!--padding-vertical-s'
+  }) }}
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="tna-section">
+  <div class="tna-container">
+    <div class="tna-column tna-column--width-2-3 tna-column--width-5-6-medium tna-column--full-small tna-column--full-tiny">
+      <h1 class="tna-heading-xl">
+        {{ pageTitle }}
+      </h1>
+
+      <p>Welcome, <strong>user@email-address.com</strong></p>
+
+      <p><a href="">Return to the catalogue</a> or <a href="#">go to your account</a></p>
+
+    </div>
+  </div>
+
+  <div class="tna-container tna-!--margin-top-m">
+    <div class="tna-column tna-column--full">
+      <div class="tna-!--padding-vertical-m tna-background-accent-light">
+
+        <div class="tna-container">
+          <div class="tna-column tna-column--full">
+
+            <h2>Help and support</h2>
+
+            <ul class="tna-ul">
+              <li><a href="#">Contact us</a> if you need help with your account.</li>
+              <li>Visit <a href="#">Help using the archive</a> if you require help with using the catalogue.</li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

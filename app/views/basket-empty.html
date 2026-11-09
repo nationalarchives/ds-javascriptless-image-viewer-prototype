@@ -1,0 +1,55 @@
+{% extends 'layouts/base.html' %}
+
+{% from 'nationalarchives/components/breadcrumbs/macro.njk' import tnaBreadcrumbs %}
+{% from "nationalarchives/components/button/macro.njk" import tnaButton %}
+{% from './components/basket-accordion.html' import basketAccordion %}
+{% from './components/basket-aside.html' import basketAside %}
+
+{% set pageTitle = 'Basket' %}
+{% set theme = 'light' %}
+{% set themeAccent = 'green' %}
+
+{% block beforeContent %}
+<div class="tna-container">
+  {{ tnaBreadcrumbs({
+    items: [
+      {
+        text: 'Home',
+        href: '/'
+      }
+    ],
+    classes: 'tna-column tna-column--full tna-!--padding-vertical-s'
+  }) }}
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="tna-section">
+  <div class="tna-container">
+    <div class="tna-column tna-column--width-2-3 tna-column--width-5-6-medium tna-column--full-small tna-column--full-tiny">
+      <h1 class="tna-heading-xl">
+        {{ pageTitle }}
+      </h1>
+
+      <p><strong>Your basket is currently empty</strong></p>
+
+      <p class="tna-!--margin-top-xs">Add digital records to your basket to proceed.</p>
+
+      {{ tnaButton({
+        text: "Start a new search",
+        href: "/",
+        classes: "tna-!--margin-top-s"
+      }) }}
+
+      {{ basketAccordion() }}
+
+    </div>
+
+    {{ basketAside({
+      count: 0,
+      total: "£0.00"
+    }) }}
+  </div>
+</div>
+
+{% endblock %}

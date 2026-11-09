@@ -1,0 +1,94 @@
+{% extends 'layouts/base.html' %}
+
+{% from 'nationalarchives/components/breadcrumbs/macro.njk' import tnaBreadcrumbs %}
+{% from "nationalarchives/components/fieldset/macro.njk" import tnaFieldset %}
+{% from "nationalarchives/components/text-input/macro.njk" import tnaTextInput %}
+{% from "nationalarchives/components/button/macro.njk" import tnaButton %}
+{% from "nationalarchives/components/warning/macro.njk" import tnaWarning %}
+
+{% set pageTitle = 'Sign in to your account' %}
+{% set theme = 'light' %}
+{% set themeAccent = 'green' %}
+
+{% block beforeContent %}
+<div class="tna-container">
+  {{ tnaBreadcrumbs({
+    items: [
+      {
+        text: 'Home',
+        href: '/'
+      },
+      {
+        text: 'Checkout' if returnKey == 'checkout' else 'Basket',
+        href: '/checkout' if returnKey == 'checkout' else '/basket-full-guest'
+      }
+    ],
+    classes: 'tna-column tna-column--full tna-!--padding-vertical-s'
+  }) }}
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="tna-section">
+  <div class="tna-container">
+    <div class="tna-column tna-column--width-2-3 tna-column--width-5-6-medium tna-column--full-small tna-column--full-tiny">
+      <h1 class="tna-heading-xl">
+        {{ pageTitle }}
+      </h1>
+      <form action="{{ returnTo }}" method="post">
+
+        {% call tnaFieldset({
+          legend: pageTitle,
+          headingLevel: 1,
+          headingSize: "l",
+          id: "search-manor"
+        }) %}
+
+          {{ tnaWarning({
+            headingLevel: 2,
+            body: "This is a new platform for viewing records and managing your downloads. Even if you have an existing National Archives account you will need to <a href=\"/create-account\">create a new account</a>."|safe,
+            classes: "tna-!--margin-top-m"
+          }) }}
+
+          {{ tnaTextInput({
+            label: "Email address",
+            type: "email",
+            id: "email",
+            name: "email",
+            size: "l"
+          }) }}
+
+          <a href="/sign-in/forgot-password">Forgotten username?</a>
+
+          {{ tnaTextInput({
+            label: "Password",
+            password: true,
+            id: "password",
+            name: "password",
+            size: "l"
+          }) }}
+
+          <div>
+            <a href="/sign-in/forgot-password">Forgotten password?</a>
+          </div>
+
+          <div>
+            {{ tnaButton({
+              text: "Sign in",
+              buttonElement: true,
+              buttonType: "submit"
+            }) }}
+          </div>
+
+          <div>
+            <a href="/create-account">Create an account</a>
+          </div>
+
+        {% endcall %}
+
+      </form>
+
+    </div>
+  </div>
+</div>
+{% endblock %}
